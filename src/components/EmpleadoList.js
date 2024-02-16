@@ -15,7 +15,7 @@ const EmpleadoList = () => {
   const [telefono, setTelefono] = useState("");
   const [correo, setCorreo] = useState("");
   const [usuario, setUsuario] = useState("");
-  const [contrasena, setContrasena] = useState("");
+  const [ContrasenaHash, setContrasenaHash] = useState("");
   const [estado, setEstado] = useState("");
   const [filtroNombre, setFiltroNombre] = useState("");
   const [modo, setModo] = useState(""); // Variable de estado para controlar el modo del modal
@@ -42,12 +42,12 @@ const EmpleadoList = () => {
 
   useEffect(() => {
     // Verificar si todos los campos están completos
-    if (nombre !== "" && apellido !== "" && cargo !== "" && telefono !== "" && correo !== "" && usuario !== "" && contrasena !== "" && estado !== "") {
+    if (nombre !== "" && apellido !== "" && cargo !== "" && telefono !== "" && correo !== "" && usuario !== "" && ContrasenaHash !== "" && estado !== "") {
       setCamposCompletos(true);
     } else {
       setCamposCompletos(false);
     }
-  }, [nombre, apellido, cargo, telefono, correo, usuario, contrasena, estado]);
+  }, [nombre, apellido, cargo, telefono, correo, usuario, ContrasenaHash, estado]);
 
   const handleEditarEmpleado = (empleado) => {
     setEmpleadoSeleccionado(empleado);
@@ -57,7 +57,7 @@ const EmpleadoList = () => {
     setTelefono(empleado.Telefono);
     setCorreo(empleado.CorreoElectronico);
     setUsuario(empleado.Usuario);
-    setContrasena(empleado.Contrasena);
+    setContrasenaHash(empleado.ContrasenaHash);
     setEstado(empleado.Estado);
 
     setModo("editar"); // Establecer el modo en "editar"
@@ -89,7 +89,7 @@ const EmpleadoList = () => {
         Telefono: telefono,
         CorreoElectronico: correo,
         Usuario: usuario,
-        Contrasena: contrasena,
+        ContrasenaHash: ContrasenaHash,
         Estado: estado
       };
       axios.post("http://localhost:4000/empleados", nuevoEmpleado)
@@ -118,7 +118,7 @@ const EmpleadoList = () => {
         Telefono: telefono,
         CorreoElectronico: correo,
         Usuario: usuario,
-        Contrasena: contrasena,
+        ContrasenaHash: ContrasenaHash,
         Estado: estado
       };
       axios.put(`http://localhost:4000/empleados/${empleadoSeleccionado.EmpleadoID}`, empleadoActualizado)
@@ -148,7 +148,7 @@ const EmpleadoList = () => {
     setTelefono("");
     setCorreo("");
     setUsuario("");
-    setContrasena("");
+    setContrasenaHash("");
     setEstado("");
     setModo("agregar"); // Establecer el modo en "agregar"
     setShowModal(true);
@@ -202,7 +202,7 @@ const EmpleadoList = () => {
               <td>{empleado.Telefono}</td>
               <td>{empleado.CorreoElectronico}</td>
               <td>{empleado.Usuario}</td>
-              {/* <td>{empleado.Contrasena}</td> */}
+              {/* <td>{empleado.ContrasenaHash}</td> */}
               <td>{empleado.Estado}</td>
               <td>
                 <Button variant="primary" onClick={() => handleEditarEmpleado(empleado)}>Editar</Button>{' '}
@@ -270,8 +270,8 @@ const EmpleadoList = () => {
               <Form.Label>Contraseña</Form.Label>
               <Form.Control
                 type="password"
-                value={contrasena}
-                onChange={(e) => setContrasena(e.target.value)}
+                value={ContrasenaHash}
+                onChange={(e) => setContrasenaHash(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="formEstado">
