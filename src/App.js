@@ -1,5 +1,6 @@
 import React from "react";
-import EmpleadoList from './components/EmpleadoList';
+// import EmpleadoList from './components/EmpleadoList';
+import Vehiculos from './components/Vehiculos';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
         </div>
       </header>
       <main>
-        <EmpleadoList />
+        {/* <EmpleadoList /> */}
+        <Vehiculos/>
       </main>
     </div>
   );

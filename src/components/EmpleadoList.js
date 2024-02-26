@@ -121,6 +121,7 @@ const EmpleadoList = () => {
         ContrasenaHash: ContrasenaHash,
         Estado: estado
       };
+      console.log('datos a insertar: ', empleadoActualizado);
       axios.put(`http://localhost:4000/empleados/${empleadoSeleccionado.EmpleadoID}`, empleadoActualizado)
         .then((response) => {
           // Actualizar la lista de empleados
